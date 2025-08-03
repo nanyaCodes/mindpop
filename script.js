@@ -16,7 +16,6 @@ class MemoryGame {
         this.attempts = 0;
         this.isChecking = false;
         
-        // Mix of objects and numbers for 4x4 grid (8 pairs)
         this.symbols = ['⚽', '🎸', '📱', '🚗', '🏠', '1', '2', '3'];
         
         this.init();
@@ -36,7 +35,6 @@ class MemoryGame {
     }
             
     createCards() {
-        // Clear existing cards
         this.board.innerHTML = '';
         this.cards = [];
         this.flippedCards = [];
@@ -47,13 +45,9 @@ class MemoryGame {
         this.winMessage.classList.add('hidden');
         this.clearFireworks();
         
-        // Create pairs (8 pairs for 4x4 grid)
         const cardPairs = [...this.symbols, ...this.symbols];
-        
-        // Shuffle cards
         this.shuffleArray(cardPairs);
          
-        // Create card elements
         cardPairs.forEach((symbol, index) => {
             const card = this.createCardElement(symbol, index);
             this.cards.push(card);
@@ -111,17 +105,15 @@ class MemoryGame {
         
         setTimeout(() => {
             if (card1.symbol === card2.symbol) {
-                // Match found
+                
                 this.handleMatch(card1, card2);
             } else {
-                // No match
                 this.handleMismatch(card1, card2);
             }
             
             this.flippedCards = [];
             this.isChecking = false;
             
-            // Check win condition
             if (this.matchedPairs === 8) {
                 this.handleWin();
             }
